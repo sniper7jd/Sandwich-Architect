@@ -81,12 +81,33 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.summaryPanel.classList.toggle('pointer-events-none', state.view === 'complete');
 
         if (state.view !== 'complete') {
-            elements.summaryContent.innerHTML = !state.selectedBread
-                ? `<p class="text-gray-500 italic text-center mt-8">Your creation starts with bread...</p>`
-                : `<div class="font-semibold"><strong>Bread:</strong> ${state.selectedBread.name}</div>
-                   ${state.selectedToppings.length > 0
-                       ? `<div class="font-semibold mt-4"><strong>Toppings:</strong></div><ul>${state.selectedToppings.map(t => `<li class="ml-4 list-disc">${t.name}</li>`).join('')}</ul>`
-                       : `<p class="text-gray-500 italic text-sm">Select some toppings...</p>`}`;
+            if (!state.selectedBread) {
+                elements.summaryContent.innerHTML = `<p class="text-gray-500 italic text-center mt-8">Your creation starts with bread...</p>`;
+            } else {
+                const patties = state.selectedToppings.filter(t => t.type === 'patty');
+                const vegetables = state.selectedToppings.filter(t => t.type === 'vegetable');
+                const sauces = state.selectedToppings.filter(t => t.type === 'sauce');
+                
+                let summaryHTML = `<div class="font-semibold"><strong>Bread:</strong> ${state.selectedBread.name}</div>`;
+                
+                if (patties.length > 0) {
+                    summaryHTML += `<div class="font-semibold mt-4"><strong>Patty:</strong></div><ul>${patties.map(t => `<li class="ml-4 list-disc">${t.name}</li>`).join('')}</ul>`;
+                }
+                
+                if (vegetables.length > 0) {
+                    summaryHTML += `<div class="font-semibold mt-4"><strong>Vegetables:</strong></div><ul>${vegetables.map(t => `<li class="ml-4 list-disc">${t.name}</li>`).join('')}</ul>`;
+                }
+                
+                if (sauces.length > 0) {
+                    summaryHTML += `<div class="font-semibold mt-4"><strong>Sauces:</strong></div><ul>${sauces.map(t => `<li class="ml-4 list-disc">${t.name}</li>`).join('')}</ul>`;
+                }
+                
+                if (state.selectedToppings.length === 0) {
+                    summaryHTML += `<p class="text-gray-500 italic text-sm mt-4">Select some toppings...</p>`;
+                }
+                
+                elements.summaryContent.innerHTML = summaryHTML;
+            }
             elements.buildBtn.disabled = !state.selectedBread;
         }
 
@@ -165,7 +186,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (errors.length) return toggleWarning(true, "Please fix the following:<br>" + errors.map(e => `&bull; ${e}`).join('<br>'));
             
-            elements.finalSummary.innerHTML = `<p><strong>Bread:</strong> ${state.selectedBread.name}</p><p class="mt-2"><strong>Toppings:</strong></p><ul class="list-disc list-inside">${state.selectedToppings.map(t => `<li>${t.name}</li>`).join('')}</ul>`;
+            // Organize toppings by type: patties, vegetables, sauces
+            const patties = state.selectedToppings.filter(t => t.type === 'patty');
+            const vegetables = state.selectedToppings.filter(t => t.type === 'vegetable');
+            const sauces = state.selectedToppings.filter(t => t.type === 'sauce');
+            
+            let summaryHTML = `<p><strong>Bread:</strong> ${state.selectedBread.name}</p>`;
+            
+            if (patties.length > 0) {
+                summaryHTML += `<p class="mt-2"><strong>Patty:</strong></p><ul class="list-disc list-inside">${patties.map(t => `<li>${t.name}</li>`).join('')}</ul>`;
+            }
+            
+            if (vegetables.length > 0) {
+                summaryHTML += `<p class="mt-2"><strong>Vegetables:</strong></p><ul class="list-disc list-inside">${vegetables.map(t => `<li>${t.name}</li>`).join('')}</ul>`;
+            }
+            
+            if (sauces.length > 0) {
+                summaryHTML += `<p class="mt-2"><strong>Sauces:</strong></p><ul class="list-disc list-inside">${sauces.map(t => `<li>${t.name}</li>`).join('')}</ul>`;
+            }
+            
+            elements.finalSummary.innerHTML = summaryHTML;
             update({ view: 'complete' });
         });
 
