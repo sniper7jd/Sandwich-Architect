@@ -1,33 +1,58 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // DATA
-    // generated multiple elements using https://placehold.co/
+    // --- DATA ---
     const breads = [
-        { id: 'white', name: 'White Bread', image: 'https://placehold.co/200x150/FFF4E0/333333?text=White' },
-        { id: 'wheat', name: 'Wheat Bread', image: 'https://placehold.co/200x150/D2B48C/333333?text=Wheat' },
-        { id: 'sourdough', name: 'Sourdough', image: 'https://placehold.co/200x150/F5DEB3/333333?text=Sourdough' },
-        { id: 'rye', name: 'Rye Bread', image: 'https://placehold.co/200x150/DEB887/333333?text=Rye' },
+        // Bread 1: White & Sourdough
+        { 
+            id: 'white', 
+            name: 'White Bread', 
+            image: 'https://placehold.co/200x150/FFF4E0/333333?text=White', // Placeholder for selection
+            topImage: 'vectors/bread1top.png', // Vector image for stack
+            bottomImage: 'vectors/bread1down.png' 
+        },
+        { 
+            id: 'sourdough', 
+            name: 'Sourdough', 
+            image: 'https://placehold.co/200x150/F5DEB3/333333?text=Sourdough', 
+            topImage: 'vectors/bread1top.png',
+            bottomImage: 'vectors/bread1down.png' 
+        },
+        // Bread 2: Wheat & Rye
+        { 
+            id: 'wheat', 
+            name: 'Wheat Bread', 
+            image: 'https://placehold.co/200x150/D2B48C/333333?text=Wheat', 
+            topImage: 'vectors/bread2top.png',
+            bottomImage: 'vectors/bread2down.png' 
+        },
+        { 
+            id: 'rye', 
+            name: 'Rye Bread', 
+            image: 'https://placehold.co/200x150/DEB887/333333?text=Rye', 
+            topImage: 'vectors/bread2top.png',
+            bottomImage: 'vectors/bread2down.png' 
+        },
     ];
     const toppings = {
         patties: [
-            { id: 'beef', name: 'Beef Patty', type: 'patty', image: 'https://placehold.co/200x150/8B4513/FFFFFF?text=Beef' },
-            { id: 'chicken', name: 'Chicken Patty', type: 'patty', image: 'https://placehold.co/200x150/F0E68C/333333?text=Chicken' },
-            { id: 'veggie', name: 'Veggie Patty', type: 'patty', image: 'https://placehold.co/200x150/228B22/FFFFFF?text=Veggie' },
+            { id: 'beef', name: 'Beef Patty', type: 'patty', image: 'https://placehold.co/200x150/8B4513/FFFFFF?text=Beef', stackImage: 'vectors/beef.png' },
+            { id: 'chicken', name: 'Chicken Patty', type: 'patty', image: 'https://placehold.co/200x150/F0E68C/333333?text=Chicken', stackImage: 'vectors/chicken.png' },
+            { id: 'veggie', name: 'Veggie Patty', type: 'patty', image: 'https://placehold.co/200x150/228B22/FFFFFF?text=Veggie', stackImage: 'vectors/veggie.png' },
         ],
         vegetables: [
-            { id: 'lettuce', name: 'Lettuce', type: 'vegetable', image: 'https://placehold.co/200x150/90EE90/333333?text=Lettuce' },
-            { id: 'tomato', name: 'Tomato', type: 'vegetable', image: 'https://placehold.co/200x150/FF6347/FFFFFF?text=Tomato' },
-            { id: 'onion', name: 'Onion', type: 'vegetable', image: 'https://placehold.co/200x150/DDA0DD/333333?text=Onion' },
-            { id: 'pickle', name: 'Pickles', type: 'vegetable', image: 'https://placehold.co/200x150/6B8E23/FFFFFF?text=Pickles' },
-            { id: 'cucumber', name: 'Cucumber', type: 'vegetable', image: 'https://placehold.co/200x150/3CB371/FFFFFF?text=Cucumber' },
-            { id: 'peppers', name: 'Bell Peppers', type: 'vegetable', image: 'https://placehold.co/200x150/FFD700/333333?text=Peppers' },
+            { id: 'lettuce', name: 'Lettuce', type: 'vegetable', image: 'https://placehold.co/200x150/90EE90/333333?text=Lettuce', stackImage: 'vectors/lettuce.png' },
+            { id: 'tomato', name: 'Tomato', type: 'vegetable', image: 'https://placehold.co/200x150/FF6347/FFFFFF?text=Tomato', stackImage: 'vectors/tomato.png' },
+            { id: 'onion', name: 'Onion', type: 'vegetable', image: 'https://placehold.co/200x150/DDA0DD/333333?text=Onion', stackImage: 'vectors/onion.png' },
+            { id: 'pickles', name: 'Pickles', type: 'vegetable', image: 'https://placehold.co/200x150/6B8E23/FFFFFF?text=Pickles', stackImage: 'vectors/pickles.png' },
+            { id: 'cucumber', name: 'Cucumber', type: 'vegetable', image: 'https://placehold.co/200x150/3CB371/FFFFFF?text=Cucumber', stackImage: 'vectors/cucumber.png' },
+            { id: 'peppers', name: 'Bell Peppers', type: 'vegetable', image: 'https://placehold.co/200x150/FFD700/333333?text=Peppers', stackImage: 'vectors/peppers.png' },
         ],
         sauces: [
-            { id: 'ketchup', name: 'Ketchup', type: 'sauce', image: 'https://placehold.co/200x150/FF0000/FFFFFF?text=Ketchup' },
-            { id: 'mustard', name: 'Mustard', type: 'sauce', image: 'https://placehold.co/200x150/FFDB58/333333?text=Mustard' },
-            { id: 'mayo', name: 'Mayonnaise', type: 'sauce', image: 'https://placehold.co/200x150/FFFFF0/333333?text=Mayo' },
-            { id: 'bbq', name: 'BBQ Sauce', type: 'sauce', image: 'https://placehold.co/200x150/A0522D/FFFFFF?text=BBQ' },
-            { id: 'ranch', name: 'Ranch', type: 'sauce', image: 'https://placehold.co/200x150/F5F5DC/333333?text=Ranch' },
-            { id: 'chipotle', name: 'Chipotle Aioli', type: 'sauce', image: 'https://placehold.co/200x150/CD853F/FFFFFF?text=Chipotle' },
+            { id: 'ketchup', name: 'Ketchup', type: 'sauce', image: 'https://placehold.co/200x150/FF0000/FFFFFF?text=Ketchup', stackImage: 'vectors/red.png' },
+            { id: 'mustard', name: 'Mustard', type: 'sauce', image: 'https://placehold.co/200x150/FFDB58/333333?text=Mustard', stackImage: 'vectors/yellow.png' },
+            { id: 'mayo', name: 'Mayonnaise', type: 'sauce', image: 'https://placehold.co/200x150/FFFFF0/333333?text=Mayo', stackImage: 'vectors/white.png' },
+            { id: 'ranch', name: 'Ranch', type: 'sauce', image: 'https://placehold.co/200x150/F5F5DC/333333?text=Ranch', stackImage: 'vectors/white.png' },
+            { id: 'bbq', name: 'BBQ Sauce', type: 'sauce', image: 'https://placehold.co/200x150/A0522D/FFFFFF?text=BBQ', stackImage: 'vectors/brown.png' },
+            { id: 'chipotle', name: 'Chipotle Aioli', type: 'sauce', image: 'https://placehold.co/200x150/CD853F/FFFFFF?text=Chipotle', stackImage: 'vectors/brown.png' },
         ]
     };
     const RULES = {
@@ -46,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         summaryPanel: document.getElementById('summaryPanel'),
         summaryContent: document.getElementById('summary-content'),
         finalSummary: document.getElementById('final-summary'),
+        sandwichStack: document.getElementById('sandwich-stack'),
         buildBtn: document.getElementById('build-btn'),
         changeBreadBtn: document.getElementById('change-bread-btn'),
         startOverBtn: document.getElementById('start-over-btn'),
@@ -70,6 +96,98 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.warningModal.classList.toggle('pointer-events-none', !show);
         elements.warningModalContent.classList.toggle('scale-95', !show);
     };
+
+    // RENDER SANDWICH VISUAL
+    function renderSandwichVisual() {
+        const stackContainer = elements.sandwichStack;
+        stackContainer.innerHTML = ''; // Clear previous build
+
+        const allItems = [];
+
+        // 1. ADD TOP BREAD (appears first at top of visual stack)
+        if (state.selectedBread) {
+            allItems.push({ 
+                image: state.selectedBread.topImage, // Use the top slice
+                name: state.selectedBread.name + ' (Top)',
+                order: 1,
+                rotation: 0 
+            });
+        }
+
+        // 2. ADD INGREDIENTS (in reverse order: sauces first, then veggies, then patties)
+        // Organize by type first
+        const sauces = state.selectedToppings.filter(t => t.type === 'sauce');
+        const vegetables = state.selectedToppings.filter(t => t.type === 'vegetable');
+        const patties = state.selectedToppings.filter(t => t.type === 'patty');
+        
+        let orderIndex = 2;
+        
+        // Add sauces first (closest to top bread)
+        sauces.forEach((item, index) => {
+            const rotation = Math.floor(Math.random() * 10) - 5; 
+            allItems.push({ 
+                ...item, 
+                image: item.stackImage || item.image,
+                order: orderIndex++,
+                rotation 
+            });
+        });
+        
+        // Add vegetables
+        vegetables.forEach((item, index) => {
+            const rotation = Math.floor(Math.random() * 10) - 5; 
+            allItems.push({ 
+                ...item, 
+                image: item.stackImage || item.image,
+                order: orderIndex++,
+                rotation 
+            });
+        });
+        
+        // Add patties (closest to bottom bread)
+        patties.forEach((item, index) => {
+            const rotation = Math.floor(Math.random() * 10) - 5; 
+            allItems.push({ 
+                ...item, 
+                image: item.stackImage || item.image,
+                order: orderIndex++,
+                rotation 
+            });
+        });
+
+        // 3. ADD BOTTOM BREAD (appears last at bottom of visual stack)
+        if (state.selectedBread) {
+            allItems.push({ 
+                image: state.selectedBread.bottomImage, // Use the bottom slice
+                name: state.selectedBread.name + ' (Bottom)',
+                order: orderIndex,
+                rotation: 0 
+            });
+        }
+
+        // 4. GENERATE DOM ELEMENTS (already in correct order)
+        allItems.forEach((item, index) => {
+            const img = document.createElement('img');
+            img.src = item.image;
+            img.alt = item.name;
+            
+            // Tailwind classes - stack images vertically with adequate spacing
+            img.className = "w-48 h-auto object-contain transition-all duration-500 ease-out scale-0 opacity-0";
+            
+            // Apply rotation if needed
+            if (item.rotation) {
+                img.style.transform = `rotate(${item.rotation}deg)`;
+            }
+
+            stackContainer.appendChild(img);
+
+            // Animate in
+            setTimeout(() => {
+                img.classList.remove('scale-0', 'opacity-0');
+                img.classList.add('scale-100', 'opacity-100');
+            }, 100 + (index * 50));
+        });
+    }
 
     // RENDER
     function render() {
@@ -130,12 +248,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // INITIALIZATION
     function init() {
         // build HTML for each item card
-        const createItemCardHTML = (item, type) => `
+        const createItemCardHTML = (item, type) => {
+            // Use vector images for display in selection, but keep placeholder in data
+            let displayImage = item.image; // Default to placeholder
+            if (type === 'bread' && item.topImage) {
+                displayImage = item.topImage; // Use topImage for bread selection
+            } else if (type === 'topping' && item.stackImage) {
+                displayImage = item.stackImage; // Use stackImage for topping selection
+            }
+            
+            return `
             <div class="item-card bg-white p-4 rounded-lg shadow-md cursor-pointer text-center flex flex-col justify-between" 
                  data-id="${item.id}" data-type="${type}" ${type === 'topping' ? `data-topping='${JSON.stringify(item)}'` : ''}>
-                <img src="${item.image}" alt="${item.name}" class="w-full h-24 object-cover rounded-md mb-3 pointer-events-none">
+                <img src="${displayImage}" alt="${item.name}" class="w-full h-24 object-cover rounded-md mb-3 pointer-events-none">
                 <span class="font-medium pointer-events-none">${item.name}</span>
             </div>`;
+        };
 
         elements.breadOptions.innerHTML = breads.map(b => createItemCardHTML(b, 'bread')).join('');
         elements.toppingsOptions.innerHTML = Object.entries(toppings).map(([category, items]) => {
@@ -207,6 +335,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             elements.finalSummary.innerHTML = summaryHTML;
             update({ view: 'complete' });
+            // Render the visual sandwich
+            renderSandwichVisual();
         });
 
         // Modal close
