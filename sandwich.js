@@ -6,30 +6,30 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'white', 
             name: 'White Bread', 
             image: 'https://placehold.co/200x150/FFF4E0/333333?text=White', // Placeholder for selection
-            topImage: 'vectors/bread1top.png', // Vector image for stack
-            bottomImage: 'vectors/bread1down.png' 
+            topImage: 'vectors/bread1TOP.png', // Vector image for stack
+            bottomImage: 'vectors/bread1DOWN.png' 
         },
         { 
             id: 'sourdough', 
             name: 'Sourdough', 
             image: 'https://placehold.co/200x150/F5DEB3/333333?text=Sourdough', 
-            topImage: 'vectors/bread1top.png',
-            bottomImage: 'vectors/bread1down.png' 
+            topImage: 'vectors/bread1TOP.png',
+            bottomImage: 'vectors/bread1DOWN.png' 
         },
         // Bread 2: Wheat & Rye
         { 
             id: 'wheat', 
             name: 'Wheat Bread', 
             image: 'https://placehold.co/200x150/D2B48C/333333?text=Wheat', 
-            topImage: 'vectors/bread2top.png',
-            bottomImage: 'vectors/bread2down.png' 
+            topImage: 'vectors/bread2TOP.png',
+            bottomImage: 'vectors/bread2DOWN.png' 
         },
         { 
             id: 'rye', 
             name: 'Rye Bread', 
             image: 'https://placehold.co/200x150/DEB887/333333?text=Rye', 
-            topImage: 'vectors/bread2top.png',
-            bottomImage: 'vectors/bread2down.png' 
+            topImage: 'vectors/bread2TOP.png',
+            bottomImage: 'vectors/bread2DOWN.png' 
         },
     ];
     const toppings = {
