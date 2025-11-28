@@ -1,6 +1,6 @@
 # 🥪 Sandwich Architect
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 
@@ -22,6 +22,7 @@ It features dynamic state management, constraint validation, and a responsive UI
 ## ✨ Features
 
 * **Step-by-Step Wizard:** Guides the user through selecting bread, patties, vegetables, and sauces.
+* **Enhanced Visuals:** Replaced placeholders with high-quality PNG assets for all ingredients.
 * **Dynamic State Management:** A centralized state object updates the UI instantly upon user interaction.
 * **Live Summary Panel:** A sticky sidebar that tracks choices in real-time.
 * **Visual Validation:**
@@ -38,7 +39,7 @@ It features dynamic state management, constraint validation, and a responsive UI
 * **HTML5:** Semantic markup structure.
 * **CSS3:** Custom styling for animations + **Tailwind CSS** (via CDN) for utility classes.
 * **JavaScript (ES6+):** Vanilla JS for DOM manipulation, logic, and state management.
-* **Assets:** Placeholder images generated dynamically via `placehold.co`.
+* **Assets:** PNG images stored in the `vectors/` directory.
 * **Fonts:** `Inter` font family via Google Fonts.
 
 ---
@@ -64,7 +65,7 @@ Since this project uses a CDN for Tailwind CSS, no build step (npm/yarn) is requ
 
 1.  **Clone or Download** the repository.
 2.  **Open** `index.html` in your preferred web browser.
-3.  **Note:** Ensure you have an active internet connection so the Tailwind script and placeholder images can load.
+3.  **Note:** Ensure you have an active internet connection so the Tailwind script and fonts can load.
 
 ### Recommended Development Setup
 For the best experience, use the **Live Server** extension in VS Code:
@@ -78,6 +79,7 @@ For the best experience, use the **Live Server** extension in VS Code:
 
 ```text
 /
+├── vectors/        # PNG image assets for ingredients
 ├── index.html      # Main markup and Tailwind CDN import
 ├── sandwich.css    # Custom animations and override styles
 ├── sandwich.js     # Data, Logic, DOM manipulation, and State
@@ -98,9 +100,9 @@ const update = (newState) => {
     render(); // Re-draws the UI based on the new state
 };
 
-Dynamic HTML Generation
+Dynamic Asset Rendering
 
-Ingredient cards are not hardcoded in HTML. They are generated from JavaScript data arrays, making it easy to add new ingredients later.
+Ingredient cards are not hardcoded in HTML. They are generated from JavaScript data arrays, allowing for the dynamic injection of image sources from the vectors/ folder.
 JavaScript
 
 const toppings = {
@@ -109,3 +111,4 @@ const toppings = {
     sauces: [ ... ]
 };
 // These are mapped to createItemCardHTML() dynamically
+// referencing images like './vectors/chicken.png'
